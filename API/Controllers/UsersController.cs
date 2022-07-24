@@ -19,7 +19,6 @@ public class UsersController : BaseApiController
    [AllowAnonymous]
     public async Task<ActionResult<IEnumerable<AppUser>>>GetUsers()
     {
-        
         return await _context.users.ToListAsync();
     }
 
@@ -28,6 +27,8 @@ public class UsersController : BaseApiController
    [Authorize]
     public async Task<ActionResult<AppUser>>GetUser(int id)
     {
+        var currentUser = System.Security.Claims.ClaimTypes.NameIdentifier;
+        Console.WriteLine(currentUser);
         return await _context.users.FindAsync(id);
     }
 }
