@@ -46,6 +46,7 @@ namespace API.Controllers
             var login = await _context.users.
             SingleOrDefaultAsync(x => x.Name == user.username);
 
+
             using var hmac = new HMACSHA512(login.PasswordSalt);
             var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(user.Password));
 
